@@ -1,0 +1,11 @@
+steps:
+  - label: Test steps
+    command: ls
+
+  - wait
+
+  - label: Notify person
+    command: ls
+
+  - block: ":rocket: Release!"
+
