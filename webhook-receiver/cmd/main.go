@@ -15,6 +15,7 @@ type Webhook struct {
 
 func WebhookReciever(ctx context.Context, event Webhook) (string, error) {
 	// check if header user-agent is Buildkite-Request
+	log.Printf("Received webhook event: %+v", event)
 	w := webhook_parser.NewBuildKite()
 	if err := w.Parse(event.Body); err != nil {
 		log.Fatalf("error parsing data: %+v", err)

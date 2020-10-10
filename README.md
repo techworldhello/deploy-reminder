@@ -1,5 +1,24 @@
 *Deploy Reminder*
 
+## Dev setup
+
+```
+brew tap aws/tap
+brew install aws-sam-cli
+sam --version
+sam build
+sam local start-api
+```
+
+Should be able to access at: http://localhost:3000/hello
+
+## Deploy 
+
+```
+sam build
+sam deploy --guided
+```
+
 
 TODO:
 
