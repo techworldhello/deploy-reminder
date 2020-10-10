@@ -5,7 +5,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
-	"github.com/techworldhello/deploy-reminder/pkg/webhook_parser"
+	"github.com/techworldhello/deploy-reminder/webhook-reciever/pkg/webhook_parser"
 )
 
 type Store struct {
