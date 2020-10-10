@@ -43,12 +43,9 @@ Webhook to post to lambda
 
 * store in table
 
-
 Polling service (2nd lambda)
   * cron job of per min
-
   * if time now is past primary key, send email notification (in future, get slack name by email)
-
   * remove record from storage
 
 

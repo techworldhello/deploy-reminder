@@ -24,9 +24,25 @@ Resources:
           Properties:
             Path: /webhook_receiver
             Method: POST
-      # Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
-      #   Variables:
-      #     PARAM1: VALUE
+      Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
+        Variables:
+          DYNAMODB_TABLE: webhook-receiver-table
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: "webhook-receiver-table"
+  DynamoDbTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions: 
+        - AttributeName: "id"
+          AttributeType: "S"
+      KeySchema: 
+        - AttributeName: "id"
+          KeyType: "HASH"
+      ProvisionedThroughput: 
+        ReadCapacityUnits: "5"
+        WriteCapacityUnits: "5"
+      TableName: "webhook-receiver-table"
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function

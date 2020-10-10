@@ -4,6 +4,7 @@ import "time"
 
 type JobFinished struct {
 	Event string `json:"event"`
+	Id string `json:"id,omitempty"`
 	Job   struct {
 		CreatedAt          time.Time   `json:"created_at"`
 		ScheduledAt        time.Time   `json:"scheduled_at"`

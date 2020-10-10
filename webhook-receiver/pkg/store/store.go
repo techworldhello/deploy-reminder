@@ -1,6 +1,8 @@
 package store
 
 import (
+	"log"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
@@ -19,18 +21,20 @@ func New() *Store{
 	sess := session.Must(session.NewSessionWithOptions(session.Options{
 		SharedConfigState: session.SharedConfigEnable,
 	}))
-	client := dynamodb.New(sess, &aws.Config{Endpoint: aws.String("http://localhost:8000")})
+	client := dynamodb.New(sess)
 	return &Store{client}
 }
 
 func (s Store) SaveData(data webhook_parser.JobFinished) error {
+	data.Id = "abcd"
 	d, err := dynamodbattribute.MarshalMap(data)
 	if err != nil {
 		return err
 	}
+	log.Printf("What is the d 8==D: %+v", d)
 	input := &dynamodb.PutItemInput{
 		Item:      d,
-		TableName: aws.String("pipeline-events"),
+		TableName: aws.String("webhook-receiver-table"),
 	}
 	_, err = s.table.PutItem(input)
 	if err != nil {
